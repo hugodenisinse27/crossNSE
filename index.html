@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1769e0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cross NSE 2026">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Cross NSE 2026</title>
+<style>
+:root{--bg:#f3f5f8;--card:#fff;--text:#17202a;--muted:#667085;--border:#dfe4ea;--accent:#1769e0;--accent2:#0d4fae;--danger:#b42318;--shadow:0 8px 28px rgba(16,24,40,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}.app{width:min(1180px,calc(100% - 28px));margin:auto;padding:24px 0 45px}
+header{text-align:center;margin:8px 0 28px}.badge{display:inline-block;padding:7px 13px;border-radius:999px;background:#e8f1ff;color:#1558b0;font-weight:700;font-size:13px}h1{font-size:clamp(30px,5vw,48px);margin:10px 0 5px;letter-spacing:-1px}.subtitle{color:var(--muted);margin:0}.hidden{display:none!important}.screen{animation:fade .15s ease}@keyframes fade{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
+h2{margin:0 0 17px;font-size:25px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.race{padding:24px;min-height:145px;text-align:left;cursor:pointer;transition:.15s;border:1px solid var(--border);border-radius:18px}.race:hover,.menu-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#b8c2d0}.race-icon{font-size:31px;margin-bottom:13px}.race strong{display:block;font-size:21px;margin-bottom:6px}.race span{color:var(--muted);font-size:14px}
+.race-ce2g{background:#eaf4ff;border-color:#c9e1f8}.race-ce2f{background:#fff0f5;border-color:#f2cedc}.race-cm1g{background:#ecf8ef;border-color:#cbe7d2}.race-cm1f{background:#fff7e8;border-color:#f2dfb8}
+.race-ce2g:hover{background:#e2effd}.race-ce2f:hover{background:#fde8ef}.race-cm1g:hover{background:#e5f5e9}.race-cm1f:hover{background:#fff2d9}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.menu-btn{padding:18px;border:1px solid var(--border);background:#fff;border-radius:15px;text-align:left;cursor:pointer;transition:.15s}.menu-btn b{display:block;margin-bottom:4px}.menu-btn span{color:var(--muted);font-size:13px}
+.notice{margin-top:18px;padding:13px 16px;background:#fff;border:1px dashed #cbd5e1;border-radius:12px;color:var(--muted);font-size:13px;text-align:center}
+.topbar{display:flex;align-items:center;gap:14px;margin-bottom:20px}.back{border:1px solid var(--border);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}.top-title{flex:1}.top-title h2{margin:0}.top-title p{margin:4px 0 0;color:var(--muted)}.counter{background:#fff;border:1px solid var(--border);padding:10px 15px;border-radius:12px;text-align:center;font-weight:700}.counter small{display:block;color:var(--muted);font-weight:400;margin-top:3px}
+.course-banner{padding:10px 14px;border-radius:11px;font-weight:700;margin-bottom:16px;border:1px solid transparent}.course-ce2g{background:#eaf4ff;border-color:#c9e1f8}.course-ce2f{background:#fff0f5;border-color:#f2cedc}.course-cm1g{background:#ecf8ef;border-color:#cbe7d2}.course-cm1f{background:#fff7e8;border-color:#f2dfb8}
+.input-card{padding:24px}.label{display:block;font-size:14px;color:var(--muted);font-weight:700;margin-bottom:9px}.school-input{width:100%;font-size:38px;text-align:center;padding:15px;border:2px solid #b9c5d6;border-radius:14px;outline:none}.school-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(23,105,224,.12)}.hint{text-align:center;color:var(--muted);font-size:13px;margin:9px 0 0}.error{min-height:20px;color:var(--danger);text-align:center;font-weight:700;margin:8px 0 0}
+.detected{margin-top:16px;padding:15px;border-radius:13px;background:#f7f9fc;border:1px solid #d8e0eb;text-align:center}.detected b{font-size:18px}.detected small{display:block;color:var(--muted);margin-top:4px}
+.table-card{margin-top:18px;overflow:hidden}.table-head{padding:15px 18px;border-bottom:1px solid var(--border);font-weight:700}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px 13px;border-bottom:1px solid #edf0f3;text-align:left;white-space:nowrap}th{font-size:12px;text-transform:uppercase;color:var(--muted);background:#fafbfc}td{font-size:14px}.empty{text-align:center;color:var(--muted);padding:27px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.secondary,.danger{padding:11px 14px;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--border);background:#fff}.danger{color:var(--danger);border-color:#f0c2be;background:#fff7f6}
+.tabs{display:flex;gap:8px;margin-bottom:15px}.tab{padding:10px 15px;border:1px solid var(--border);background:#fff;border-radius:10px;cursor:pointer;font-weight:700}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.podium-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.podium-card{padding:22px}.podium-card h3{margin:0 0 17px}.place{display:grid;grid-template-columns:45px 1fr;align-items:center;padding:13px 0;border-top:1px solid #edf0f3}.medal{font-size:26px}.place strong{display:block;font-size:16px}.place span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.school-list{padding:16px}.school-row{display:grid;grid-template-columns:55px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #edf0f3}.school-num{font-weight:700}.small{color:var(--muted);font-size:13px}.statbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}.stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px 15px}.stat b{font-size:20px;margin-right:5px}
+.import-box{border:2px dashed #b9c5d6;border-radius:14px;padding:22px;text-align:center;background:#fafcff}.file-input{display:none}.file-label{display:inline-block;padding:12px 17px;background:var(--accent);color:#fff;border-radius:10px;font-weight:700;cursor:pointer}.db-status{margin-top:12px;font-size:13px;color:var(--muted)}
+@media(max-width:760px){.grid,.podium-grid,.settings-grid,.menu{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-wrap:wrap}.counter{margin-left:auto}}
+
+.scanner-card{margin-top:16px}.scanner-wrap{display:none}.scanner-wrap.active{display:block}.scanner-reader{width:100%;max-width:520px;margin:0 auto;border-radius:14px;overflow:hidden;background:#111}.scanner-status{margin:10px 0 0;color:var(--muted);font-size:13px;text-align:center}.scan-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}.scan-ok{margin-top:10px;padding:12px;border-radius:12px;background:#eaf8ef;color:#146b32;font-weight:700;text-align:center}.scan-error{margin-top:10px;padding:12px;border-radius:12px;background:#fff1f1;color:#9b2020;font-weight:700;text-align:center}
+@media(max-width:760px){.scanner-reader{max-width:100%}}
+</style>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+<div class="app">
+<header id="header"><div class="badge">NSE · Cross des écoles</div><h1>CROSS NSE 2026</h1><p class="subtitle">Gestion des dossards, arrivées, podiums et classements</p></header>
+
+<section id="home" class="screen">
+<h2>Sélectionner une course</h2>
+<div class="grid">
+<button class="race race-ce2g" onclick="openRace('CE2 Garçons')"><div class="race-icon">🏃</div><strong>CE2 Garçons</strong><span>Saisie des arrivées</span></button>
+<button class="race race-ce2f" onclick="openRace('CE2 Filles')"><div class="race-icon">🏃‍♀️</div><strong>CE2 Filles</strong><span>Saisie des arrivées</span></button>
+<button class="race race-cm1g" onclick="openRace('CM1 Garçons')"><div class="race-icon">🏃</div><strong>CM1 Garçons</strong><span>Saisie des arrivées</span></button>
+<button class="race race-cm1f" onclick="openRace('CM1 Filles')"><div class="race-icon">🏃‍♀️</div><strong>CM1 Filles</strong><span>Saisie des arrivées</span></button>
+</div>
+<div class="menu">
+<button class="menu-btn" onclick="openRankings()"><b>🏆 Classements écoles</b><span>CE2 et CM1, ratio par élève</span></button>
+<button class="menu-btn" onclick="openIndividual()"><b>👤 Classement individuel</b><span>Classements des 4 courses</span></button>
+<button class="menu-btn" onclick="openPodiums()"><b>🥇 Podiums</b><span>Les 3 premiers des 4 courses</span></button>
+<button class="menu-btn" onclick="openSettings()"><b>⚙️ Base & sauvegarde</b><span>Importer les participants et gérer les données</span></button>
+</div>
+<div class="notice">La base des participants sera importée ici. Format conseillé : <b>Dossard · Nom · Prénom · École · Niveau · Sexe</b>.</div>
+</section>
+
+<section id="raceScreen" class="screen hidden">
+<div class="topbar"><button class="back" onclick="goHome()">← Courses</button><div class="top-title"><h2 id="raceTitle"></h2><p>Saisis uniquement le numéro du dossard</p></div><div class="counter">Arrivants <span id="arrivalCount">0</span><small>1er = nombre d'arrivants</small></div></div>
+<div id="courseBanner" class="course-banner"></div>
+<div class="card input-card">
+<label class="label" for="bibInput">Numéro du dossard</label>
+<input id="bibInput" class="school-input" type="text" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="Ex. 012">
+<p class="hint"><b>Entrée ↵</b> = enregistrer immédiatement</p>
+<div id="detected" class="detected hidden"></div>
+<div id="error" class="error"></div>
+</div>
+<div class="card scanner-card">
+  <div class="table-head">📷 Scanner les dossards</div>
+  <p class="small">Scanne le QR code du dossard : le numéro est récupéré automatiquement et l'arrivée est enregistrée.</p>
+  <div class="scan-actions">
+    <button id="startScannerBtn" class="primary" onclick="startScanner()">📷 Ouvrir le scanner</button>
+    <button id="stopScannerBtn" class="secondary hidden" onclick="stopScanner()">⏹ Arrêter le scanner</button>
+  </div>
+  <div id="scannerWrap" class="scanner-wrap">
+    <div id="qrReader" class="scanner-reader"></div>
+    <div id="scannerStatus" class="scanner-status">Caméra prête…</div>
+    <div id="scanResult" class="scan-ok hidden"></div>
+  </div>
+</div>
+<div class="card table-card"><div class="table-head">Arrivées enregistrées</div><div class="table-wrap"><table><thead><tr><th>Place</th><th>Dossard</th><th>Nom</th><th>Prénom</th><th>École</th><th>Niveau</th><th>Points</th></tr></thead><tbody id="arrivalBody"></tbody></table></div></div>
+<div class="controls"><button class="danger" onclick="undoLast()">↩ Annuler la dernière arrivée</button><button class="secondary" onclick="finishRace()">✓ Terminer cette course</button></div>
+</section>
+
+<section id="rankingScreen" class="screen hidden">
+<div class="topbar"><button class="back" onclick="goHome()">← Courses</button><div class="top-title"><h2>Classements écoles</h2><p>Points cumulés ÷ nombre réel d'élèves arrivés</p></div></div>
+<div class="tabs"><button id="tabCE2" class="tab active" onclick="showLevel('CE2')">Classement CE2</button><button id="tabCM1" class="tab" onclick="showLevel('CM1')">Classement CM1</button></div>
+<div class="statbar"><div class="stat"><b id="rankSchools">0</b> écoles classées</div><div class="stat"><b id="rankStudents">0</b> élèves</div></div>
+<div class="card table-card" style="margin-top:0"><div class="table-wrap"><table><thead><tr><th>Rang</th><th>École</th><th>Élèves</th><th>Points</th><th>Moyenne / élève</th></tr></thead><tbody id="rankingBody"></tbody></table></div></div>
+</section>
+
+<section id="individualScreen" class="screen hidden">
+<div class="topbar"><button class="back" onclick="goHome()">← Courses</button><div class="top-title"><h2>Classement individuel</h2><p>Classement de chaque course</p></div></div>
+<div class="tabs" id="individualTabs"></div>
+<div class="card table-card" style="margin-top:0"><div class="table-wrap"><table><thead><tr><th>Place</th><th>Dossard</th><th>Nom</th><th>Prénom</th><th>École</th><th>Points</th></tr></thead><tbody id="individualBody"></tbody></table></div></div>
+</section>
+
+<section id="podiumScreen" class="screen hidden">
+<div class="topbar"><button class="back" onclick="goHome()">← Courses</button><div class="top-title"><h2>Podiums</h2><p>Les trois premiers de chaque course</p></div></div>
+<div class="podium-grid" id="podiumGrid"></div>
+</section>
+
+<section id="settingsScreen" class="screen hidden">
+<div class="topbar"><button class="back" onclick="goHome()">← Courses</button><div class="top-title"><h2>Base & sauvegarde</h2><p>Importe la liste des participants avant le cross</p></div></div>
+<div class="settings-grid">
+<div class="card input-card">
+<h3 style="margin-top:0">Importer la base des participants</h3>
+<p class="small">Fichier Excel <b>.xlsx</b> ou CSV avec les colonnes : <b>Dossard, Nom, Prénom, École, Niveau, Sexe</b>. Le fichier Excel peut être utilisé directement, sans conversion.</p>
+<div class="import-box"><label class="file-label" for="participantFile">📥 Choisir le fichier Excel / CSV</label><input id="participantFile" class="file-input" type="file" accept=".xlsx,.xls,.csv,.txt" onchange="importParticipants(event)"><div id="dbStatus" class="db-status">Aucune base importée.</div><div style="margin-top:14px"><button class="danger" onclick="deleteParticipantBase()">🗑️ Supprimer la base importée</button></div></div>
+</div>
+<div class="card input-card">
+<h3 style="margin-top:0">Base actuelle</h3>
+<div class="statbar"><div class="stat"><b id="participantCount">0</b> participants</div><div class="stat"><b id="registeredCount">0</b> arrivées</div></div>
+<p class="small">Une fois la base importée, le numéro de dossard permettra de retrouver automatiquement le nom, le prénom, l'école, le niveau et le sexe.</p>
+</div>
+<div class="card input-card">
+<h3 style="margin-top:0">Sauvegarde des résultats</h3>
+<p class="small">Les résultats sont sauvegardés automatiquement dans le navigateur. Télécharge une copie avant ou pendant le cross pour sécurité.</p>
+<div class="controls"><button class="primary" onclick="downloadBackup()">💾 Télécharger la sauvegarde</button><button class="secondary" onclick="document.getElementById('backupFile').click()">📂 Restaurer</button></div>
+<input id="backupFile" class="hidden" type="file" accept=".json" onchange="restoreBackup(event)">
+</div>
+<div class="card input-card">
+<h3 style="margin-top:0">Exports</h3>
+<div class="controls"><button class="secondary" onclick="exportArrivals()">📄 Arrivées CSV</button><button class="secondary" onclick="exportIndividual()">👤 Individuel CSV</button><button class="secondary" onclick="exportRankings()">🏆 Écoles CSV</button></div>
+</div>
+<div class="card input-card">
+<h3 style="margin-top:0">Réinitialisation</h3>
+<p class="small">Efface les arrivées mais conserve la base des participants.</p>
+<button class="danger" onclick="resetArrivals()">⚠ Effacer toutes les arrivées</button>
+</div>
+</div>
+</section>
+</div>
+
+<script>
+const schools={1:"Bois Arnault",2:"Francheville",3:"Saint Antonin de Sommaire",4:"Chennebrun",5:"Chéronvilliers",6:"Condé sur Iton",7:"La Neuve Lyre",8:"La Guéroulde",9:"Bourth",10:"Damville",11:"Rugles",12:"Breteuil",13:"Verneuil d'Avre et d'Iton"};
+const raceNames=["CE2 Garçons","CE2 Filles","CM1 Garçons","CM1 Filles"];
+let data=loadData(),currentRace="",arrivals=[],currentLevel="CE2",individualRace="CE2 Garçons";
+
+function blankData(){return {"CE2 Garçons":[],"CE2 Filles":[],"CM1 Garçons":[],"CM1 Filles":[]};}
+function loadData(){try{const raw=localStorage.getItem("crossNSE2026Dossards");if(!raw)return {participants:{},races:blankData()};const d=JSON.parse(raw);return {participants:d.participants||{},races:{...blankData(),...(d.races||{})}}}catch(e){return {participants:{},races:blankData()};}}
+function saveData(){localStorage.setItem("crossNSE2026Dossards",JSON.stringify(data));}
+function hideAll(){["home","raceScreen","rankingScreen","individualScreen","podiumScreen","settingsScreen"].forEach(id=>document.getElementById(id).classList.add("hidden"));document.getElementById("header").classList.add("hidden");}
+function goHome(){stopScanner().catch(()=>{});hideAll();document.getElementById("home").classList.remove("hidden");document.getElementById("header").classList.remove("hidden");}
+function courseClass(name){if(name==="CE2 Garçons")return"course-ce2g";if(name==="CE2 Filles")return"course-ce2f";if(name==="CM1 Garçons")return"course-cm1g";return"course-cm1f";}
+function expectedSex(race){return race.includes("Garçons")?"G":"F";}
+function expectedLevel(race){return race.startsWith("CE2")?"CE2":"CM1";}
+
+function openRace(name){
+stopScanner().catch(()=>{});
+hideAll();document.getElementById("raceScreen").classList.remove("hidden");currentRace=name;arrivals=data.races[name]||[];
+document.getElementById("raceTitle").textContent=name;const banner=document.getElementById("courseBanner");banner.className="course-banner "+courseClass(name);banner.textContent="Course en cours : "+name;
+document.getElementById("arrivalCount").textContent=arrivals.length;document.getElementById("error").textContent="";document.getElementById("detected").classList.add("hidden");renderArrivals();focusBib();
+}
+function focusBib(){setTimeout(()=>document.getElementById("bibInput").focus(),60);}
+document.getElementById("bibInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();addArrival();}});
+function normalizeBib(v){return String(v).trim().replace(/^0+(?=\d)/,"")||"0";}
+function findParticipant(bib){return data.participants[normalizeBib(bib)]||null;}
+
+function addArrival(scannedBib=null){
+const input=document.getElementById("bibInput"),raw=scannedBib!==null?String(scannedBib):input.value,bib=normalizeBib(raw),err=document.getElementById("error"),p=findParticipant(bib);
+err.textContent="";document.getElementById("detected").classList.add("hidden");
+if(!bib||bib==="0"){err.textContent="Numéro de dossard invalide.";if(scannedBib===null)input.select();return false;}
+if(!p){err.textContent="Dossard "+raw+" introuvable dans la base des participants.";if(scannedBib===null)input.select();return false;}
+if(arrivals.some(a=>normalizeBib(a.bib)===bib)){err.textContent="Ce dossard a déjà été enregistré dans cette course.";if(scannedBib===null)input.select();return false;}
+const level=String(p.niveau||"").trim().toUpperCase(),sex=String(p.sexe||"").trim().toUpperCase();
+const expL=expectedLevel(currentRace),expS=expectedSex(currentRace);
+if(level&&level!==expL){err.textContent="Attention : ce dossard appartient au niveau "+level+", pas à "+expL+".";if(scannedBib===null)input.select();return false;}
+if(sex&&sex!==expS){err.textContent="Attention : ce dossard est enregistré comme "+(sex==="G"?"garçon":"fille")+", pas dans cette course.";if(scannedBib===null)input.select();return false;}
+const place=arrivals.length+1;
+arrivals.push({place,bib,participant:{nom:p.nom||"",prenom:p.prenom||"",ecole:p.ecole||"",niveau:p.niveau||"",sexe:p.sexe||""}});
+data.races[currentRace]=arrivals;saveData();input.value="";document.getElementById("arrivalCount").textContent=arrivals.length;renderArrivals();
+if(scannedBib!==null){
+  const box=document.getElementById("scanResult");box.textContent="✓ "+p.prenom+" "+p.nom+" — dossard "+bib+" enregistré en place "+place;box.classList.remove("hidden");
+  if(navigator.vibrate)navigator.vibrate(120);
+}
+if(scannedBib===null)focusBib();
+return true;
+}
+
+let qrScanner=null,scannerRunning=false,scanLock=false;
+async function startScanner(){
+  if(scannerRunning)return;
+  const wrap=document.getElementById("scannerWrap"),status=document.getElementById("scannerStatus"),start=document.getElementById("startScannerBtn"),stop=document.getElementById("stopScannerBtn");
+  wrap.classList.add("active");start.classList.add("hidden");stop.classList.remove("hidden");
+  if(!window.Html5Qrcode){status.textContent="Le module de scan n’a pas pu être chargé. Vérifie la connexion internet du téléphone.";return;}
+  try{
+    if(qrScanner)qrScanner.clear();
+    qrScanner=new Html5Qrcode("qrReader",{verbose:false});
+    status.textContent="Autorise la caméra puis présente le QR code dans le cadre.";
+    await qrScanner.start({facingMode:"environment"},{fps:10,qrbox:function(w,h){const s=Math.floor(Math.min(w,h)*0.68);return {width:s,height:s};},aspectRatio:1,useBarCodeDetectorIfSupported:true,rememberLastUsedCamera:true},async(decodedText)=>{
+      if(scanLock)return;
+      scanLock=true;
+      const value=String(decodedText||"").trim();
+      const ok=/^\d+$/.test(value)&&addArrival(value);
+      status.textContent=ok?"QR lu : "+value+" — tu peux scanner le suivant.":"QR lu : "+value+" — vérifie le message ci-dessus.";
+      setTimeout(()=>{scanLock=false;},700);
+    },()=>{});
+    scannerRunning=true;
+    status.textContent="Scanner actif — présente un QR code.";
+  }catch(err){
+    scannerRunning=false;
+    status.textContent="Impossible d’ouvrir la caméra. Le site doit être en HTTPS et l’accès caméra doit être autorisé.";
+    console.error(err);
+  }
+}
+async function stopScanner(){
+  const status=document.getElementById("scannerStatus");
+  try{if(qrScanner&&scannerRunning)await qrScanner.stop();}catch(e){}
+  try{if(qrScanner)qrScanner.clear();}catch(e){}
+  qrScanner=null;scannerRunning=false;scanLock=false;
+  document.getElementById("scannerWrap").classList.remove("active");
+  document.getElementById("startScannerBtn").classList.remove("hidden");
+  document.getElementById("stopScannerBtn").classList.add("hidden");
+  status.textContent="Caméra arrêtée.";
+}
+
+function renderArrivals(){
+const body=document.getElementById("arrivalBody");if(!arrivals.length){body.innerHTML='<tr><td colspan="7" class="empty">Aucune arrivée enregistrée.</td></tr>';return;}
+const total=arrivals.length;
+body.innerHTML=arrivals.map(a=>{const p=a.participant||{};return `<tr><td><b>${a.place}</b></td><td>${a.bib}</td><td>${p.nom||"—"}</td><td>${p.prenom||"—"}</td><td>${p.ecole||"—"}</td><td>${p.niveau||"—"}</td><td><b>${total-a.place+1}</b></td></tr>`}).join("");
+}
+function undoLast(){if(!arrivals.length)return;arrivals.pop();arrivals.forEach((a,i)=>a.place=i+1);data.races[currentRace]=arrivals;saveData();document.getElementById("arrivalCount").textContent=arrivals.length;document.getElementById("error").textContent="";renderArrivals();focusBib();}
+function finishRace(){saveData();goHome();}
+
+function getLevelRaces(level){return level==="CE2"?["CE2 Garçons","CE2 Filles"]:["CM1 Garçons","CM1 Filles"];}
+function ranking(level){
+const totals={};getLevelRaces(level).forEach(r=>{const list=data.races[r]||[],total=list.length;list.forEach(a=>{const p=a.participant||{};const key=String(p.ecole||"").trim();if(!key)return;if(!totals[key])totals[key]={count:0,points:0};totals[key].count++;totals[key].points+=total-a.place+1;});});
+return Object.keys(totals).map(k=>({...totals[k],name:k,average:totals[k].points/totals[k].count})).sort((a,b)=>b.average-a.average||b.points-a.points||a.name.localeCompare(b.name,"fr"));
+}
+function openRankings(){hideAll();document.getElementById("rankingScreen").classList.remove("hidden");showLevel("CE2");}
+function showLevel(level){currentLevel=level;document.getElementById("tabCE2").classList.toggle("active",level==="CE2");document.getElementById("tabCM1").classList.toggle("active",level==="CM1");const rows=ranking(level),body=document.getElementById("rankingBody");document.getElementById("rankSchools").textContent=rows.length;document.getElementById("rankStudents").textContent=rows.reduce((s,r)=>s+r.count,0);body.innerHTML=rows.length?rows.map((r,i)=>`<tr><td><b>${i+1}</b></td><td><b>${r.name}</b></td><td>${r.count}</td><td>${r.points}</td><td><b>${r.average.toFixed(2)}</b></td></tr>`).join(""):'<tr><td colspan="5" class="empty">Aucune arrivée enregistrée.</td></tr>';}
+
+function openIndividual(){hideAll();document.getElementById("individualScreen").classList.remove("hidden");const tabs=document.getElementById("individualTabs");tabs.innerHTML=raceNames.map(r=>`<button class="tab ${r===individualRace?"active":""}" onclick="showIndividualRace('${r}')">${r}</button>`).join("");showIndividualRace(individualRace);}
+function showIndividualRace(r){individualRace=r;document.querySelectorAll("#individualTabs .tab").forEach(b=>b.classList.toggle("active",b.textContent===r));const list=data.races[r]||[],body=document.getElementById("individualBody"),total=list.length;if(!list.length){body.innerHTML='<tr><td colspan="6" class="empty">Aucune arrivée enregistrée.</td></tr>';return;}body.innerHTML=list.map(a=>{const p=a.participant||{};return `<tr><td><b>${a.place}</b></td><td>${a.bib}</td><td>${p.nom||"—"}</td><td>${p.prenom||"—"}</td><td>${p.ecole||"—"}</td><td><b>${total-a.place+1}</b></td></tr>`}).join("");}
+
+function openPodiums(){hideAll();document.getElementById("podiumScreen").classList.remove("hidden");const grid=document.getElementById("podiumGrid"),medal=["🥇","🥈","🥉"];grid.innerHTML=raceNames.map(r=>{const list=data.races[r]||[];let c="";for(let i=0;i<3;i++){const a=list[i],p=a?.participant||{};c+=a?`<div class="place"><div class="medal">${medal[i]}</div><div><strong>${p.prenom||""} ${p.nom||""}</strong><span>${p.ecole||"École non renseignée"} · Dossard ${a.bib}</span></div></div>`:`<div class="place"><div class="medal">${medal[i]}</div><div><span>Pas encore enregistré</span></div></div>`;}return `<div class="card podium-card"><h3>${r}</h3>${c}</div>`}).join("");}
+
+function openSettings(){hideAll();document.getElementById("settingsScreen").classList.remove("hidden");document.getElementById("participantCount").textContent=Object.keys(data.participants).length;document.getElementById("registeredCount").textContent=raceNames.reduce((s,r)=>s+(data.races[r]||[]).length,0);document.getElementById("dbStatus").textContent=Object.keys(data.participants).length?Object.keys(data.participants).length+" participants importés.":"Aucune base importée.";}
+
+function parseCSV(text){
+const lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(x=>x.trim());if(!lines.length)return [];
+const first=lines[0];const sep=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?";":",";
+function split(line){const out=[];let cur="",q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++;}else q=!q;}else if(ch===sep&&!q){out.push(cur.trim());cur="";}else cur+=ch;}out.push(cur.trim());return out;}
+const headers=split(first).map(h=>h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim());
+const find=(names)=>names.map(n=>headers.indexOf(n)).find(i=>i>=0);
+const idx={bib:find(["dossard","numero de dossard","numero dossard","n dossard","num dossard","numero"]),nom:find(["nom"]),prenom:find(["prenom","prénom"]),ecole:find(["ecole","école"]),niveau:find(["niveau","classe"]),sexe:find(["sexe","genre"])};
+if(idx.bib<0)return [];
+return lines.slice(1).map(line=>{const c=split(line);return {bib:normalizeBib(c[idx.bib]||""),nom:idx.nom>=0?c[idx.nom]||"":"",prenom:idx.prenom>=0?c[idx.prenom]||"":"",ecole:idx.ecole>=0?c[idx.ecole]||"":"",niveau:idx.niveau>=0?c[idx.niveau]||"":"",sexe:idx.sexe>=0?String(c[idx.sexe]||"").trim().toUpperCase():""};}).filter(p=>p.bib);
+}
+async function unzipXlsx(arrayBuffer){
+const bytes=new Uint8Array(arrayBuffer),view=new DataView(arrayBuffer),files={};
+let eocd=-1;
+for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--){if(view.getUint32(i,true)===0x06054b50){eocd=i;break;}}
+if(eocd<0)throw Error("Archive XLSX invalide");
+const cdSize=view.getUint32(eocd+12,true),cdOffset=view.getUint32(eocd+16,true);let pos=cdOffset;
+const dec=new TextDecoder("utf-8");
+while(pos<cdOffset+cdSize){
+if(view.getUint32(pos,true)!==0x02014b50)break;
+const method=view.getUint16(pos+10,true),compSize=view.getUint32(pos+20,true),nameLen=view.getUint16(pos+28,true),extraLen=view.getUint16(pos+30,true),commentLen=view.getUint16(pos+32,true),localOffset=view.getUint32(pos+42,true);
+const name=dec.decode(bytes.slice(pos+46,pos+46+nameLen));
+const localNameLen=view.getUint16(localOffset+26,true),localExtraLen=view.getUint16(localOffset+28,true),start=localOffset+30+localNameLen+localExtraLen;
+const compressed=bytes.slice(start,start+compSize);
+let content;
+if(method===0)content=compressed.buffer.slice(compressed.byteOffset,compressed.byteOffset+compressed.byteLength);
+else if(method===8){const ds=new DecompressionStream("deflate-raw");content=await new Response(new Blob([compressed]).stream().pipeThrough(ds)).arrayBuffer();}
+else throw Error("Compression XLSX non prise en charge");
+files[name]=content;pos+=46+nameLen+extraLen+commentLen;
+}
+return files;
+}
+function xmlText(node){return node?.textContent?.trim()||"";}
+function cellColumn(ref){let m=String(ref||"").match(/[A-Z]+/i);if(!m)return 0;let n=0;for(const ch of m[0].toUpperCase())n=n*26+(ch.charCodeAt(0)-64);return n-1;}
+async function parseXLSX(arrayBuffer){
+const files=await unzipXlsx(arrayBuffer),dec=new TextDecoder("utf-8");
+if(!files["xl/worksheets/sheet1.xml"])throw Error("Première feuille Excel introuvable");
+const shared=[];
+if(files["xl/sharedStrings.xml"]){const doc=new DOMParser().parseFromString(dec.decode(files["xl/sharedStrings.xml"]),"application/xml");for(const si of Array.from(doc.getElementsByTagNameNS("*","si"))){shared.push(Array.from(si.getElementsByTagNameNS("*","t")).map(xmlText).join(""));}}
+const doc=new DOMParser().parseFromString(dec.decode(files["xl/worksheets/sheet1.xml"]),"application/xml");
+if(doc.querySelector("parsererror"))throw Error("Feuille Excel illisible");
+const rows=[];
+for(const row of Array.from(doc.getElementsByTagNameNS("*","row"))){const cells=[];for(const c of Array.from(row.getElementsByTagNameNS("*","c"))){const ref=c.getAttribute("r")||"",col=cellColumn(ref),type=c.getAttribute("t")||"";let value="";const v=c.getElementsByTagNameNS("*","v")[0],is=c.getElementsByTagNameNS("*","is")[0];if(type==="s"&&v)value=shared[Number(v.textContent)]??"";else if(type==="inlineStr"&&is)value=Array.from(is.getElementsByTagNameNS("*","t")).map(xmlText).join("");else if(v)value=xmlText(v);else if(is)value=Array.from(is.getElementsByTagNameNS("*","t")).map(xmlText).join("");cells[col]=value;}rows.push(cells);}
+if(!rows.length)return [];
+const headers=rows[0].map(h=>String(h??"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim());
+const find=(names)=>names.map(n=>headers.indexOf(n)).find(i=>i>=0);
+const idx={bib:find(["dossard","numero de dossard","numero dossard","n dossard","num dossard","numero"]),nom:find(["nom"]),prenom:find(["prenom"]),ecole:find(["ecole"]),niveau:find(["niveau","classe"]),sexe:find(["sexe","genre"])};
+if(idx.bib<0)throw Error("Colonne de dossard introuvable");
+return rows.slice(1).map(c=>({bib:normalizeBib(c[idx.bib]??""),nom:idx.nom>=0?String(c[idx.nom]??"").trim():"",prenom:idx.prenom>=0?String(c[idx.prenom]??"").trim():"",ecole:idx.ecole>=0?String(c[idx.ecole]??"").trim():"",niveau:idx.niveau>=0?String(c[idx.niveau]??"").trim():"",sexe:idx.sexe>=0?String(c[idx.sexe]??"").trim().toUpperCase():""})).filter(p=>p.bib);
+}
+async function importParticipants(e){const file=e.target.files[0];if(!file)return;try{let rows;if(/\.xlsx$/i.test(file.name)){rows=await parseXLSX(await file.arrayBuffer());}else{const text=await file.text();rows=parseCSV(text);}if(!rows.length)throw Error("Aucune ligne valide");const map={};let duplicates=0;rows.forEach(p=>{if(map[p.bib])duplicates++;map[p.bib]=p;});data.participants=map;saveData();document.getElementById("dbStatus").textContent=Object.keys(map).length+" participants importés."+(duplicates?" "+duplicates+" dossard(s) en doublon détecté(s).":"");alert(Object.keys(map).length+" participants importés.");openSettings();}catch(err){console.error(err);document.getElementById("dbStatus").textContent="Erreur d’import : "+(err.message||"fichier illisible");alert("Impossible de lire le fichier Excel. Vérifie les colonnes : Numéro de dossard, NOM, Prénom, Ecole, Niveau, Sexe.");}e.target.value="";}
+
+function downloadBackup(){const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="cross-nse-2026-sauvegarde.json";a.click();URL.revokeObjectURL(a.href);}
+function restoreBackup(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const d=JSON.parse(reader.result);if(!d||typeof d!=="object")throw Error();data={participants:d.participants||{},races:{...blankData(),...(d.races||{})}};saveData();alert("Sauvegarde restaurée.");openSettings();}catch(x){alert("Fichier de sauvegarde invalide.");}};reader.readAsText(file);e.target.value="";}
+function csvEscape(v){return '"'+String(v??"").replaceAll('"','""')+'"';}
+function downloadCsv(filename,rows){const csv=rows.map(r=>r.map(csvEscape).join(";")).join("\n");const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;a.click();URL.revokeObjectURL(a.href);}
+function exportArrivals(){const rows=[["Course","Place","Dossard","Nom","Prénom","École","Niveau","Sexe","Points"]];raceNames.forEach(r=>{const list=data.races[r]||[],total=list.length;list.forEach(a=>{const p=a.participant||{};rows.push([r,a.place,a.bib,p.nom,p.prenom,p.ecole,p.niveau,p.sexe,total-a.place+1]);});});downloadCsv("cross-nse-2026-arrivees.csv",rows);}
+function exportIndividual(){exportArrivals();}
+function exportRankings(){const rows=[["Niveau","Rang","École","Élèves","Points","Moyenne / élève"]];["CE2","CM1"].forEach(l=>ranking(l).forEach((r,i)=>rows.push([l,i+1,r.name,r.count,r.points,r.average.toFixed(2)])));downloadCsv("cross-nse-2026-classements-ecoles.csv",rows);}
+function deleteParticipantBase(){
+if(Object.keys(data.participants).length===0){alert("Aucune base de participants n’est actuellement importée.");return;}
+const hasArrivals=raceNames.some(r=>(data.races[r]||[]).length>0);
+let message="Supprimer la base des participants actuellement importée ?\n\nCette action ne supprimera pas les résultats déjà enregistrés.";
+if(hasArrivals) message+="\n\n⚠ Des arrivées sont déjà enregistrées. Elles seront conservées, mais il est recommandé d’effacer les arrivées si tu changes complètement de liste de participants.";
+if(!confirm(message))return;
+data.participants={};
+saveData();
+document.getElementById("dbStatus").textContent="Aucune base importée.";
+document.getElementById("participantCount").textContent="0";
+document.getElementById("participantFile").value="";
+alert("La base des participants a été supprimée. Tu peux maintenant importer un nouveau fichier Excel.");
+openSettings();
+}
+function resetArrivals(){if(!confirm("Effacer toutes les arrivées des 4 courses ? La base des participants sera conservée."))return;data.races=blankData();saveData();alert("Toutes les arrivées ont été effacées.");openSettings();}
+</script>
+<script>
+// Enregistre le service worker pour permettre le lancement hors ligne après une première visite en ligne.
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(err => console.warn("Service worker indisponible", err)));
+}
+</script>
+</body>
+</html>
